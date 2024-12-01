@@ -1,0 +1,59 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 725799283397.dkr.ecr.ap-south-1.amazonaws.com
+  build:
+    commands:
+      # authService
+      - echo Building the Docker image for authService...
+      - ls -alh backend/authService/
+      - cat backend/authService/Dockerfile
+      - docker build -t 725799283397.dkr.ecr.ap-south-1.amazonaws.com/authservice:latest -f backend/authService/Dockerfile .
+
+      # baseService
+      - echo Building the Docker image for baseService...
+      - ls -alh backend/baseService/
+      - cat backend/baseService/Dockerfile
+      - docker build -t 725799283397.dkr.ecr.ap-south-1.amazonaws.com/baseservice:latest -f backend/baseService/Dockerfile .
+
+      # calculationService
+      - echo Building the Docker image for calculationService...
+      - ls -alh backend/calculationService/
+      - cat backend/calculationService/Dockerfile
+      - docker build -t 725799283397.dkr.ecr.ap-south-1.amazonaws.com/calculationservice:latest -f backend/calculationService/Dockerfile .
+
+      # coreAPIService
+      - echo Building the Docker image for coreAPIService...
+      - ls -alh backend/coreAPIService/
+      - cat backend/coreAPIService/Dockerfile
+      - docker build -t 725799283397.dkr.ecr.ap-south-1.amazonaws.com/coreapiservice:latest -f backend/coreAPIService/Dockerfile .
+
+      # urlShortnerService
+      - echo Building the Docker image for urlShortnerService...
+      - ls -alh backend/urlShortnerService/
+      - cat backend/urlShortnerService/Dockerfile
+      - docker build -t 725799283397.dkr.ecr.ap-south-1.amazonaws.com/urlshortnerservice:latest -f backend/urlShortnerService/Dockerfile .
+
+      # userDataService
+      - echo Building the Docker image for userDataService...
+      - ls -alh backend/userDataService/
+      - cat backend/userDataService/Dockerfile
+      - docker build -t 725799283397.dkr.ecr.ap-south-1.amazonaws.com/userdataservice:latest -f backend/userDataService/Dockerfile .
+      
+  post_build:
+    commands:
+      - echo Pushing the Docker images to Amazon ECR...
+      - docker push 725799283397.dkr.ecr.ap-south-1.amazonaws.com/authservice:latest
+      - docker push 725799283397.dkr.ecr.ap-south-1.amazonaws.com/baseservice:latest
+      - docker push 725799283397.dkr.ecr.ap-south-1.amazonaws.com/calculationservice:latest
+      - docker push 725799283397.dkr.ecr.ap-south-1.amazonaws.com/coreapiservice:latest
+      - docker push 725799283397.dkr.ecr.ap-south-1.amazonaws.com/urlshortnerservice:latest
+      - docker push 725799283397.dkr.ecr.ap-south-1.amazonaws.com/userdataservice:latest
+
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: yes

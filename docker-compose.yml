@@ -1,0 +1,59 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - authservice
+      - baseservice
+      - calculationservice
+      - nps
+      - userdataservice
+      - urlshortnerservice
+
+  authservice:
+    build:
+      context: ./backend/authService
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+ 
+
+  baseservice:
+    build:
+      context: ./backend/baseService
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3003"
+
+  calculationservice:
+    build:
+      context: ./backend/calculationService
+      dockerfile: Dockerfile
+    ports:
+      - "3008:3008"
+
+  nps:
+    build:
+      context: ./backend/nps
+      dockerfile: Dockerfile
+    ports:
+      - "3005:3005"
+
+  userdataservice:
+    build:
+      context: ./backend/userDataService
+      dockerfile: Dockerfile
+    ports:
+      - "3006:3006"
+ 
+  urlshortnerservice:
+    build:
+      context: ./backend/urlShortnerService
+      dockerfile: Dockerfile
+    ports:
+      - "3007:3007"

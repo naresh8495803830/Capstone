@@ -1,0 +1,38 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      docker: 18
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 725799283397.dkr.ecr.ap-south-1.amazonaws.com
+  build:
+    commands:
+      - echo Building the Docker image for authService...
+      - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/authService:latest -f ../authService/Dockerfile .
+      - echo Building the Docker image for baseService...
+      - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/baseService:latest -f ../baseService/Dockerfile .
+      - echo Building the Docker image for calculationService...
+      - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/calculationService:latest -f ../calculationService/Dockerfile .
+      - echo Building the Docker image for coreAPIService...
+      - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/coreAPIService:latest -f ../coreAPIService/Dockerfile .
+      - echo Building the Docker image for urlShortnerService...
+      - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/urlShortnerService:latest -f ../urlShortnerService/Dockerfile .
+      - echo Building the Docker image for userDataService...
+      - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/userDataService:latest -f ../userDataService/Dockerfile .
+  post_build:
+    commands:
+      - echo Pushing the Docker images to Amazon ECR...
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/authService:latest
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/baseService:latest
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/calculationService:latest
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/coreAPIService:latest
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/urlShortnerService:latest
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/userDataService:latest
+
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: yes

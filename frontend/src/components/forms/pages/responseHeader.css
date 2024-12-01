@@ -1,0 +1,10 @@
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32.4px;
+  text-align: left;
+  color: var(--Color-Surface-Primary, #fdfdfd);
+}
+.bg-blue {
+  background: linear-gradient(180deg, #5095fc 0%, #99bbed 100%);
+}

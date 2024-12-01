@@ -1,0 +1,6 @@
+Learner Name,Email,Phone Number,whatsapp no.,City,State,Country,BatchId,Current Industry,Total Work Experience,Highest Degree,Current Degree,Current/Last CTC(per annum),Current/Last Company Name,Attendance,Assignment Submission,Enrollment Date
+John Doe,johndoe@example.com,1234567890,9876543210,New York,NY,USA,65709daebf9da369ca997c74,Information Technology,5 years,Bachelors,Masters,75000,ABC Corp,95%,90%,01/01/2022
+Jane Smith,janesmith@example.com,2345678901,8765432109,Los Angeles,CA,USA,65709daebf9da369ca997c74,Marketing,3 years,Masters,Bachelors,65000,XYZ Inc,88%,85%,02/02/2022
+Carlos Garcia,carlosgarcia@example.com,3456789012,7654321098,Miami,FL,USA,65709daebf9da369ca997c74,Finance,4 years,Bachelors,Bachelors,70000,DEF Ltd,92%,88%,03/03/2022
+Aisha Khan,aishakhan@example.com,4567890123,6543210987,Toronto,ON,Canada,65709daebf9da369ca997c74,Healthcare,6 years,Masters,Masters,80000,GHI Healthcare,89%,93%,04/04/2022
+Raj Patel,rajpatel@example.com,5678901234,5432109876,Mumbai,MH,India,657b09be6e2f36b6ff2bb9c6,Engineering,7 years,Bachelors,Masters,55000,JKL Engineering,87%,80%,05/05/2022

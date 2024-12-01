@@ -1,0 +1,5 @@
+export const authbaseUrl = "http://localhost:3001/auth"
+export const baseServiceUrl = "http://localhost:3003/base"
+export const userServiceUrl = "http://localhost:3006/user"
+export const npsServiceUrl = "http://localhost:3005/nps"
+export const calServiceUrl = "http://localhost:3007/calculation"
